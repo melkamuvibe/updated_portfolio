@@ -1,0 +1,72 @@
+/* Advanced layer: loaded after style.css */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--blue),#64d6a1);z-index:200}
+#net{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero>.container{position:relative;z-index:1}
+.typed-wrap{display:inline-block;min-width:2ch}
+.caret{display:inline-block;width:2px;height:1em;background:var(--blue-bright);margin-left:3px;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.nav-links a.active:not(.nav-contact){color:#fff;box-shadow:0 2px 0 var(--blue)}
+.level{display:flex;gap:5px;margin-top:12px}
+.level i{width:100%;height:5px;border-radius:3px;background:var(--line);overflow:hidden;position:relative}
+.level i:after{content:"";position:absolute;inset:0;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .6s ease var(--d,0s)}
+.skill-card.seen .level i.on:after{transform:scaleX(1)}
+.skill-card{transition:transform .25s,box-shadow .25s}
+.skill-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.project-card{cursor:pointer;transition:transform .2s ease,box-shadow .25s;transform-style:preserve-3d}
+.project-card:focus-visible,.button:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--blue-bright);outline-offset:3px}
+.project-hint{display:inline-block;margin-top:14px;font-size:12px;font-weight:700;color:var(--blue)}
+dialog.modal{width:min(560px,calc(100% - 32px));border:1px solid var(--line);border-radius:14px;padding:32px;background:var(--card);color:var(--ink);box-shadow:var(--shadow)}
+dialog.modal::backdrop{background:rgba(8,15,30,.65);backdrop-filter:blur(4px)}
+dialog.modal h3{font-size:26px;margin-bottom:8px}
+dialog.modal ul{padding-left:18px;color:var(--muted)}
+.modal-close{position:absolute;top:14px;right:16px;border:0;background:none;color:var(--muted);font-size:26px}
+.to-top{position:fixed;right:22px;bottom:22px;width:46px;height:46px;border-radius:50%;border:0;background:var(--blue);color:#fff;font-size:20px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transform:translateY(10px);transition:.25s;z-index:150}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+.copy-btn{margin-left:auto;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:6px;padding:5px 10px;font-size:11px}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:var(--navy-soft);color:#fff;padding:11px 18px;border-radius:8px;font-size:13px;opacity:0;transition:.25s;z-index:300}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+/* Profile artwork shown whole (it has its own circular frame and name banner) */
+.hero-visual{height:auto;min-height:0}
+.profile-frame{width:min(440px,100%);height:auto;border:0;border-radius:28px;background:#081024;box-shadow:0 0 60px rgba(70,140,255,.35)}
+.profile-photo{height:auto;aspect-ratio:1;object-fit:contain;border-radius:0}
+.profile-photo:hover{transform:none}
+@media(max-width:768px){.profile-frame{width:min(340px,100%)}}
+
+/* ---- Round 2: profile badge, name intro, palette, chips ---- */
+@property --a{syntax:"<angle>";initial-value:0deg;inherits:false}
+.hero-visual{min-height:440px;perspective:900px}
+.floating-tag{display:none}
+.profile-frame{width:min(430px,86vw);height:auto;aspect-ratio:1;border-radius:34px;border:0;padding:3px;overflow:visible;
+  background:conic-gradient(from var(--a),#78a6ff,#64d6a1,#5a8dee,#78a6ff);animation:spin 7s linear infinite;
+  box-shadow:0 30px 70px rgba(10,20,45,.45),0 0 60px rgba(90,141,238,.3);transition:transform .15s ease-out;transform:rotateX(var(--rx,0)) rotateY(var(--ry,0));position:relative}
+@keyframes spin{to{--a:360deg}}
+.profile-photo,.profile-photo:hover{border-radius:31px;object-position:center;transform:none}
+.profile-frame:after{content:"";position:absolute;inset:3px;border-radius:31px;pointer-events:none;
+  background:radial-gradient(circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.28),transparent 45%)}
+h1 .ch{display:inline-block;animation:rise .7s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*55ms)}
+@keyframes rise{from{opacity:0;transform:translateY(.6em) rotate(6deg);filter:blur(6px)}}
+h1 span .ch{text-shadow:0 0 28px rgba(120,166,255,.35)}
+.stats{display:flex;gap:34px;margin-top:26px}
+.stats b{display:block;font:800 30px Manrope,sans-serif;color:#fff;letter-spacing:-1px}
+.stats span{font-size:12px;color:#9cabc1}
+#glow{position:fixed;width:520px;height:520px;left:0;top:0;margin:-260px 0 0 -260px;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(90,141,238,.13),transparent 65%);transition:opacity .3s}
+.cmd-btn{display:flex;gap:8px;align-items:center;border:1px solid rgba(255,255,255,.25);background:transparent;color:#d1d9e7;border-radius:6px;padding:8px 11px;font-size:12px}
+.cmd-btn kbd,.palette kbd{font:600 10px monospace;border:1px solid rgba(255,255,255,.3);border-radius:4px;padding:1px 5px}
+dialog.palette{width:min(520px,calc(100% - 32px));margin-top:12vh;padding:0;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);box-shadow:var(--shadow);overflow:hidden}
+dialog.palette::backdrop{background:rgba(8,15,30,.6);backdrop-filter:blur(4px)}
+.palette input{width:100%;border:0;border-bottom:1px solid var(--line);padding:18px 20px;background:transparent;color:var(--ink);font-size:16px;outline:0}
+.palette ul{list-style:none;margin:0;padding:8px;max-height:320px;overflow:auto}
+.palette li{display:flex;justify-content:space-between;padding:11px 12px;border-radius:8px;cursor:pointer;font-size:14px}
+.palette li small{color:var(--muted)}
+.palette li.sel{background:var(--blue);color:#fff}.palette li.sel small{color:#e6eeff}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:8px 16px;font-size:13px;font-weight:600}
+.chip.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.save-contact{margin-top:14px;width:100%}
+.skill-card[hidden]{display:none}
+@media(max-width:768px){.stats{gap:22px}.cmd-btn kbd{display:none}}
